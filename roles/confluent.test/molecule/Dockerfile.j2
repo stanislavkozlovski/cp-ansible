@@ -19,33 +19,38 @@ RUN yum -y install java-1.8.0-openjdk \
 
 RUN echo $'[Confluent.dist]\n\
 name=Confluent repository (dist)\n\
-baseurl=https://packages.confluent.io/rpm/6.0\n\
+baseurl=https://s3-us-west-2.amazonaws.com/jenkins-confluent-packages/6.1.x/29/rpm/6.1/7\n\
 gpgcheck=1\n\
-gpgkey=https://packages.confluent.io/rpm/6.0/archive.key\n\
+gpgkey=https://s3-us-west-2.amazonaws.com/jenkins-confluent-packages/6.1.x/29/rpm/6.1/archive.key\n\
 enabled=1\n\
 \n\
 [Confluent]\n\
 name=Confluent repository\n\
-baseurl=https://packages.confluent.io/rpm/6.0\n\
+
+baseurl=https://s3-us-west-2.amazonaws.com/jenkins-confluent-packages/6.1.x/29/rpm/6.1\n\
 gpgcheck=1\n\
-gpgkey=https://packages.confluent.io/rpm/6.0/archive.key\n\
+gpgkey=https://s3-us-west-2.amazonaws.com/jenkins-confluent-packages/6.1.x/29/rpm/6.1/archive.key\n\
 enabled=1' >> /etc/yum.repos.d/confluent.repo
 
 RUN yum clean all && \
-    yum -y install confluent-common \
-      confluent-hub-client \
-      confluent-rebalancer \
-      confluent-rest-utils \
-      confluent-metadata-service \
-      confluent-server \
-      confluent-security \
-      confluent-kafka-connect-replicator \
-      confluent-kafka-rest \
-      confluent-ksqldb \
-      confluent-schema-registry \
-      confluent-control-center-fe \
-      confluent-control-center \
-      confluent-schema-registry \
-      confluent-ce-kafka-https-server \
-      confluent-ce-kafka-rest \
-      confluent-hub-client
+    yum -y install confluent-common-6.1.0 \
+      confluent-rebalancer-6.1.0 \
+      confluent-rest-utils-6.1.0 \
+      confluent-metadata-service-6.1.0 \
+      confluent-server-6.1.0 \
+      confluent-kafka-connect-elasticsearch-6.1.0 \
+      confluent-kafka-connect-jdbc-6.1.0 \
+      confluent-kafka-connect-jms-6.1.0 \
+      confluent-kafka-connect-replicator-6.1.0 \
+      confluent-kafka-connect-s3-6.1.0 \
+      confluent-kafka-connect-storage-common-6.1.0 \
+      confluent-kafka-rest-6.1.0 \
+      confluent-ksqldb-6.1.0 \
+      confluent-schema-registry-6.1.0 \
+      confluent-security-6.1.0 \
+      confluent-control-center-fe-6.1.0 \
+      confluent-control-center-6.1.0 \
+      confluent-schema-registry-6.1.0 \
+      confluent-ce-kafka-https-server-6.1.0 \
+      confluent-ce-kafka-rest-6.1.0 \
+      confluent-hub-client-6.1.0
